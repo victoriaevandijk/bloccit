@@ -9,6 +9,9 @@ include RandomData
      body:   RandomData.random_paragraph
    )
  end
+
+ Post.find_or_create_by(title: "Unique Post", body: "A unique body")
+
  posts = Post.all
  
 
