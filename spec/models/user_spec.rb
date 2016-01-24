@@ -5,7 +5,8 @@ RSpec.describe User, type: :model do
 
    it { should validate_presence_of(:name) }
    it { should validate_length_of(:name).is_at_least(1) }
- 
+   it { should allow_value('Bloccit User').for(:name) }
+   it { should_not allow_value('bloccit user').for(:name) }
 
    it { should validate_presence_of(:email) }
    it { should validate_uniqueness_of(:email) }
@@ -30,6 +31,7 @@ RSpec.describe User, type: :model do
    
    describe "invalid user" do
      let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
+     let(:user_with_invalid_name_format) { User.new name: 'bloccit user', email: 'user@bloccit.com', password: 'password' }
      let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
      let(:user_with_invalid_email_format) { User.new(name: "Bloccit User", email: "invalid_format") }
  
@@ -41,9 +43,14 @@ RSpec.describe User, type: :model do
        expect(user_with_invalid_email).to_not be_valid
      end
  
+     it 'should be an invalid user due to incorrectly formatted name' do
+       expect(user_with_invalid_name_format).to_not be_valid
+     end
+
      it "should be an invalid user due to incorrectly formatted email address" do
        expect(user_with_invalid_email_format).to_not be_valid
      end
  
    end
 end
+
