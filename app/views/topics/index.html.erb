@@ -9,4 +9,6 @@
      </div>
    </div>
  <% end %>
- <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+ <% if user_is_authorized_for_topics? %>
+     <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+ <% end %>
