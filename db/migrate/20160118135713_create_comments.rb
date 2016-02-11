@@ -6,5 +6,11 @@ class CreateComments < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    create_table :comments do |t|
+      t.text :body
+      t.references :topic, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
   end
 end
