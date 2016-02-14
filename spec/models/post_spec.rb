@@ -74,4 +74,30 @@ RSpec.describe Post, type: :model do
          expect(post.rank).to eq (old_rank - 1)
        end
      end
+     
+  describe "#create_vote" do
+    let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
+    let(:user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld") }
+    let(:post) { Post.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, topic: topic, user: user) }
+
+    it "sets the post up_votes value to 1" do
+      post.save
+      expect(post.up_votes).to eq (1)
+    end
+
+    it "sets the post down_votes value to 0" do
+      post.save
+      expect(post.down_votes).to eq (0)
+    end
+
+    it "sends an email to the owner of the post" do
+      expect(post).to receive(:create_vote)
+      post.save
+    end
+
+    it "associates the vote with the owner of the post" do
+      post.save
+      expect(Vote.first.user).to eq (post.user)
+    end
+  end
 end
