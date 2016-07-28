@@ -21,7 +21,42 @@
  .user-info {
    margin-top: 9px;
  }
- 
+
+@keyframes welcome {
+    0%   {background-color: #CC77D4;}
+    33%  {background-color: #D49E77;}
+    66%  {background-color: #7FD477;}
+    100% {background-color: #77ADD4;}
+}
+
+@keyframes jumbo {
+    0%   {background-color: #CC77D4;}
+    33%  {background-color: #D49E77;}
+    66%  {background-color: #7FD477;}
+    100% {background-color: #77ADD4;}
+}
+
+#welcome {
+    
+    background-color: #77ADD4;
+    animation-iteration-count: infinite;
+    animation-name: welcome;
+    animation-duration: 20s;
+    font-family: 'BenchNine', sans-serif;
+}
+
+#jumbo {
+    
+    background-color: #77ADD4;
+    animation-iteration-count: infinite;
+    animation-name: jumbo;
+    animation-duration: 20s;
+}
+
+.jumbotron {
+  background:  #ffccff;
+}
+
  .nav {
    margin-top: 5px;
  }
@@ -36,3 +71,4 @@
   float: right;
   margin: 0 5px 10px 0;
 }
+
