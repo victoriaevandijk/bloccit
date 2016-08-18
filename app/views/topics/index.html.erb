@@ -1,4 +1,7 @@
 <h1>Topics</h1>
+ <%= form_tag topics_path, :method => 'get' do %>
+ <p><%= text_field_tag(:q) %><%= submit_tag "Search" %></p>
+ <% end %>
        <%= render @topics %>
  <% if user_is_authorized_for_topics? %>
      <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>

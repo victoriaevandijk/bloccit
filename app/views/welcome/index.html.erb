@@ -1,11 +1,13 @@
  <br>
  <div id="jumbo" class="jumbotron">
-   <h1>Bloccit</h1>
+   <%= image_tag "bloccit.png", :width => 500, :crop => :fill =%>
    <p>Bloccit is a resource for sharing links with your friends!</p>
+   <% unless current_user %>
    <p>
      <%= link_to "Sign In", new_session_path, class: 'btn btn-primary' %> or
      <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
    </p>
+   <% end %>
  </div>
  
  <div class="row">

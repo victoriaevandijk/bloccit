@@ -2,8 +2,13 @@ class TopicsController < ApplicationController
     before_action :require_sign_in, except: [:index, :show]
     before_action :authorize_user, except: [:index, :show]
     def index
-        @topics = Topic.visible_to(current_user)
+        if params[:q].present?
+            @topics = Topic.where("topics.name LIKE ?", params[:q])
+        else
+            @topics = Topic.all
+        end
     end
+    
     
     def show
         @topic = Topic.find(params[:id])
